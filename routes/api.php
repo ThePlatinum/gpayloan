@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OldLoanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+  return $request->user();
+});
+
+
+Route::controller(OldLoanController::class)->group(function () {
+  Route::get('/allloan', 'all');
+  Route::post('/add_loan', 'store');
+  Route::get('/getloan/{id}', 'show');
 });
